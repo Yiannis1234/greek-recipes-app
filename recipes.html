@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Γεννήτρια Ελληνικών Συνταγών</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" id="homeBtn" class="nav-button">Αρχική</a>
+                <button id="language-toggle" class="language-toggle">English</button>
+            </nav>
+            <h1 class="site-title">Γεννήτρια Ελληνικών Συνταγών</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="search-section">
+                <h2 class="search-title">Αναζήτηση Συνταγών</h2>
+                
+                <form id="search-form" class="search-container">
+                    <div class="search-filters">
+                        <div class="ingredients-filter">
+                            <h3 class="ingredients-title">Επιλέξτε Υλικά</h3>
+                            <div id="ingredients-container" class="ingredients-list">
+                                <!-- Ingredients will be populated via JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="additional-filters">
+                            <div class="difficulty-filter">
+                                <h3 class="difficulty-title">Δυσκολία</h3>
+                                <select id="difficulty-select" class="difficulty-select">
+                                    <!-- Options will be populated via JavaScript -->
+                                </select>
+                            </div>
+                            
+                            <div class="time-filter">
+                                <h3 class="prep-time-title">Χρόνος Προετοιμασίας</h3>
+                                <div class="time-range-container">
+                                    <input type="range" id="prep-time-range" min="0" max="180" value="180">
+                                    <span id="prep-time-value">180</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button type="submit" id="search-btn" class="search-button">Αναζήτηση</button>
+                        <button type="button" id="clear-btn" class="clear-button">Καθαρισμός</button>
+                    </div>
+                </form>
+            </section>
+            
+            <section class="results-section">
+                <h2 class="results-title">Αποτελέσματα</h2>
+                <div id="recipe-results" class="results-container">
+                    <!-- Recipe results will be displayed here -->
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Γεννήτρια Ελληνικών Συνταγών</p>
+        </div>
+    </footer>
+
+    <script src="recipes.js"></script>
+</body>
+</html> 

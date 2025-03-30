@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Γεννήτρια Ελληνικών Συνταγών</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" id="homeBtn" class="nav-button">Αρχική</a>
+                <button id="languageToggle" class="language-toggle">English</button>
+            </nav>
+            <h1>Γεννήτρια Ελληνικών Συνταγών</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero-section">
+                <h2 class="hero-title">Ανακαλύψτε Αυθεντικές Ελληνικές Συνταγές</h2>
+                <p class="hero-description">Επιλέξτε υλικά, δυσκολία και χρόνο προετοιμασίας για να βρείτε την τέλεια συνταγή!</p>
+                <a href="recipes.html" class="hero-button">Ξεκινήστε Τώρα</a>
+            </section>
+            
+            <section class="features-section">
+                <div class="feature">
+                    <div class="feature-icon">🍽️</div>
+                    <h3>Αυθεντικές Συνταγές</h3>
+                    <p>Ανακαλύψτε παραδοσιακές ελληνικές συνταγές με λεπτομερείς οδηγίες.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Εύκολη Αναζήτηση</h3>
+                    <p>Βρείτε συνταγές με βάση τα υλικά που έχετε διαθέσιμα.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Δίγλωσση Υποστήριξη</h3>
+                    <p>Όλες οι συνταγές διαθέσιμες στα Ελληνικά και στα Αγγλικά.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Γεννήτρια Ελληνικών Συνταγών</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple language toggle for the home page
+        let currentLanguage = 'el';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const languageToggle = document.getElementById('languageToggle');
+            
+            // Set default language based on browser or previous selection
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage) {
+                currentLanguage = savedLanguage;
+                updateLanguage();
+            }
+            
+            // Language toggle button
+            languageToggle.addEventListener('click', () => {
+                currentLanguage = currentLanguage === 'el' ? 'en' : 'el';
+                localStorage.setItem('language', currentLanguage);
+                updateLanguage();
+            });
+        });
+        
+        function updateLanguage() {
+            const translations = {
+                homeBtn: { el: 'Αρχική', en: 'Home' },
+                languageToggle: { el: 'English', en: 'Ελληνικά' },
+                title: { el: 'Γεννήτρια Ελληνικών Συνταγών', en: 'Greek Recipe Generator' },
+                heroTitle: { el: 'Ανακαλύψτε Αυθεντικές Ελληνικές Συνταγές', en: 'Discover Authentic Greek Recipes' },
+                heroDescription: { 
+                    el: 'Επιλέξτε υλικά, δυσκολία και χρόνο προετοιμασίας για να βρείτε την τέλεια συνταγή!', 
+                    en: 'Select ingredients, difficulty, and preparation time to find the perfect recipe!' 
+                },
+                heroButton: { el: 'Ξεκινήστε Τώρα', en: 'Start Now' },
+                featureTitle1: { el: 'Αυθεντικές Συνταγές', en: 'Authentic Recipes' },
+                featureDesc1: { 
+                    el: 'Ανακαλύψτε παραδοσιακές ελληνικές συνταγές με λεπτομερείς οδηγίες.', 
+                    en: 'Discover traditional Greek recipes with detailed instructions.' 
+                },
+                featureTitle2: { el: 'Εύκολη Αναζήτηση', en: 'Easy Search' },
+                featureDesc2: { 
+                    el: 'Βρείτε συνταγές με βάση τα υλικά που έχετε διαθέσιμα.', 
+                    en: 'Find recipes based on the ingredients you have available.' 
+                },
+                featureTitle3: { el: 'Δίγλωσση Υποστήριξη', en: 'Bilingual Support' },
+                featureDesc3: { 
+                    el: 'Όλες οι συνταγές διαθέσιμες στα Ελληνικά και στα Αγγλικά.', 
+                    en: 'All recipes available in both Greek and English.' 
+                },
+                footer: { el: '© 2023 Γεννήτρια Ελληνικών Συνταγών', en: '© 2023 Greek Recipe Generator' }
+            };
+            
+            // Update page title
+            document.title = translations.title[currentLanguage];
+            
+            // Update navigation
+            document.getElementById('homeBtn').textContent = translations.homeBtn[currentLanguage];
+            document.getElementById('languageToggle').textContent = translations.languageToggle[currentLanguage];
+            
+            // Update header
+            document.querySelector('h1').textContent = translations.title[currentLanguage];
+            
+            // Update hero section
+            document.querySelector('.hero-title').textContent = translations.heroTitle[currentLanguage];
+            document.querySelector('.hero-description').textContent = translations.heroDescription[currentLanguage];
+            document.querySelector('.hero-button').textContent = translations.heroButton[currentLanguage];
+            
+            // Update features
+            const featureTitles = document.querySelectorAll('.feature h3');
+            const featureDescs = document.querySelectorAll('.feature p');
+            
+            featureTitles[0].textContent = translations.featureTitle1[currentLanguage];
+            featureDescs[0].textContent = translations.featureDesc1[currentLanguage];
+            
+            featureTitles[1].textContent = translations.featureTitle2[currentLanguage];
+            featureDescs[1].textContent = translations.featureDesc2[currentLanguage];
+            
+            featureTitles[2].textContent = translations.featureTitle3[currentLanguage];
+            featureDescs[2].textContent = translations.featureDesc3[currentLanguage];
+            
+            // Update footer
+            document.querySelector('footer p').textContent = translations.footer[currentLanguage];
+            
+            // Update html lang attribute
+            document.documentElement.lang = currentLanguage;
+        }
+    </script>
+</body>
+</html> 
