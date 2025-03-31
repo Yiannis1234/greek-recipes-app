@@ -2392,7 +2392,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Update difficulty select options
-        const difficultyOptions = ['all', 'easy', 'medium', 'hard'];
         difficultySelect.innerHTML = '';
         difficultyOptions.forEach(option => {
             const optionEl = document.createElement('option');
@@ -2401,16 +2400,13 @@ document.addEventListener('DOMContentLoaded', function() {
             difficultySelect.appendChild(optionEl);
         });
         
-        // Update recipe display if there are currently displayed recipes
-        const recipeResults = document.getElementById('recipe-results');
-        if (recipeResults.children.length > 0 && recipeResults.children[0].className !== 'no-results') {
-            const selectedIngredients = Array.from(document.querySelectorAll('.ingredient-checkbox:checked')).map(cb => cb.value);
-            const selectedDifficulty = difficultySelect.value;
-            const maxPrepTime = parseInt(prepTimeRange.value);
-            
-            const filteredRecipes = searchRecipes(selectedIngredients, selectedDifficulty, maxPrepTime);
-            displayRecipes(filteredRecipes, currentLanguage);
-        }
+        // Update recipe display
+        const selectedIngredients = Array.from(document.querySelectorAll('.ingredient-checkbox:checked')).map(cb => cb.value);
+        const selectedDifficulty = difficultySelect.value;
+        const maxPrepTime = parseInt(prepTimeRange.value);
+        
+        const filteredRecipes = searchRecipes(selectedIngredients, selectedDifficulty, maxPrepTime);
+        displayRecipes(filteredRecipes, currentLanguage);
     }
     
     // Search form submission
