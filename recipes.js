@@ -1462,7 +1462,7 @@ const recipes = [
                 "Κόψτε τον μπακλαβά σε ρόμβους ή τετράγωνα πριν το ψήσιμο.",
                 "Ψήστε για περίπου 45-50 λεπτά ή μέχρι να ροδίσει.",
                 "Για το σιρόπι, βράστε νερό με ζάχαρη, μέλι, ξύλο κανέλας, γαρύφαλλο και φλούδα λεμονιού για 10 λεπτά.",
-                "Περιχύστε το ζεστό σιρόπι πάνω στον κρύο μπακλαβά ή το κρύο σιρόπι πάνω στον ζεστό μπακλαβά.",
+                "Περιχύστε το ζεστό σιρόπι πάνω στον κρύο μπακλαβά ή το κρύο σιρόπι πάνω στο ζεστό μπακλαβά.",
                 "Αφήστε τον μπακλαβά να απορροφήσει το σιρόπι για τουλάχιστον 4 ώρες πριν το σερβίρισμα."
             ],
             en: [
@@ -2351,6 +2351,15 @@ document.addEventListener('DOMContentLoaded', function() {
         ingredientsContainer.appendChild(ingredientLabel);
     });
     
+    // Initialize difficulty select options
+    const difficultyOptions = ['all', 'easy', 'medium', 'hard'];
+    difficultyOptions.forEach(option => {
+        const optionEl = document.createElement('option');
+        optionEl.value = option;
+        optionEl.textContent = translations[option][currentLanguage];
+        difficultySelect.appendChild(optionEl);
+    });
+    
     // Update prep time display
     prepTimeRange.addEventListener('input', function() {
         prepTimeValue.textContent = this.value;
@@ -2418,17 +2427,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Clear button functionality
     clearBtn.addEventListener('click', function() {
-        document.querySelectorAll('.ingredient-checkbox').forEach(cb => {
-            cb.checked = false;
-        });
+        // Clear checkboxes
+        document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
         
+        // Reset difficulty
         difficultySelect.value = 'all';
+        
+        // Reset prep time
         prepTimeRange.value = 180;
         prepTimeValue.textContent = '180';
         
-        document.getElementById('recipe-results').innerHTML = '';
+        // Show all recipes
+        displayRecipes(recipes, currentLanguage);
     });
     
-    // Initial UI setup
+    // Initial display of all recipes
+    displayRecipes(recipes, currentLanguage);
+    
+    // Initial UI language setup
     updateUILanguage();
 }); 
